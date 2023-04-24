@@ -13,7 +13,7 @@ const LeftNav = () => {
 
     return (
         <div>
-            <h4>All Categories hi</h4>
+            <h4>All Categories </h4>
             
             <div className=''>
                 {
