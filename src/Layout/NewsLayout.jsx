@@ -4,22 +4,18 @@ import Header from '../pages/Shared/Header/Header';
 import { Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import LeftNav from '../pages/Shared/leftNav/leftNav';
 import RightNav from '../pages/Shared/rightNav/RightNav';
 
-
-const Main = () => {
+const NewsLayout = () => {
     return (
         <div>
             <Header />
             <Container>
 
                 <Row>
-                    <Col lg={3}>
-                        <LeftNav></LeftNav>
-                    </Col>
+                   
                     <Col lg={6}>
-                        
+
                         <Outlet></Outlet>
                     </Col>
                     <Col lg={3}>
@@ -33,4 +29,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default NewsLayout;

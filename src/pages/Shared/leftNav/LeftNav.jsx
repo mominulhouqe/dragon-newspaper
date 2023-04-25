@@ -5,10 +5,9 @@ const LeftNav = () => {
 
     const [categories, setCategories] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/categories')
+        fetch('http://localhost:5000/catagrories')
         .then(res => res.json())
         .then(data =>setCategories(data))
-        .catch(error => console.log(error))
     }, [])
 
     return (
@@ -18,7 +17,7 @@ const LeftNav = () => {
             <div className=''>
                 {
                     categories.map(category => <p key={category.id}>
-                        <Link to={`/${category.id}`}>{category.name}</Link>
+                        <Link to={`/category/${category.id}`}>{category.name}</Link>
                     </p>)
                 }
             
