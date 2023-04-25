@@ -24,10 +24,11 @@ const Main = () => {
                     </Col>
                     <Col lg={3}>
                         <RightNav></RightNav>
+                      
                     </Col>
+                   
                 </Row>
             </Container>
-            <Outlet></Outlet>
 
         </div>
     );

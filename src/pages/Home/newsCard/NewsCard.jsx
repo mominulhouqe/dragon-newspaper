@@ -12,7 +12,7 @@ const NewsCard = ({ news }) => {
     const { _id, name, title, details, image_url, author, total_view, rating } = news;
 
     return (
-        <>
+        <div>
             <Card className="mb-3">
                 <Card.Header className='d-flex gap-3 align-items-center'>
                     <Image style={{ height: "40px" }} src={author?.img} roundedCircle />
@@ -64,7 +64,7 @@ const NewsCard = ({ news }) => {
                 </Card.Footer>
             </Card>
 
-        </>
+        </div>
     );
 };
 
