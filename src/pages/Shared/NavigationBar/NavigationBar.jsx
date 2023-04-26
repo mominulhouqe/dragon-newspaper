@@ -19,8 +19,8 @@ const NavigationBar = () => {
                             <Nav className="me-auto ">
                                
                                     <Link to="/category/0" className='mx-2 text-decoration-none' >Home</Link>
-                                    <Link to="/" className='mx-2 text-decoration-none' >About</Link>
-                                    <Link to='/' className='mx-2 text-decoration-none' >Career</Link>
+                                    <Link to="/category/0" className='mx-2 text-decoration-none' >About</Link>
+                                    <Link to='/category/0' className='mx-2 text-decoration-none' >Career</Link>
                                 
 
                             </Nav>
@@ -33,7 +33,7 @@ const NavigationBar = () => {
 
                                 {
                                     user ?
-                                        <Link to='/logout'><button className='btn  btn-dark'>Logout</button></Link> :
+                                        <Link to='/register'><button className='btn  btn-dark'>Logout</button></Link> :
                                         <Link to='/login'><button className='btn  btn-dark'>Login</button></Link>
 
                                 }
