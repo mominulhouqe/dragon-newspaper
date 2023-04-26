@@ -1,8 +1,10 @@
-import React from 'react';
-import { Container, Nav } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Container, Nav, Navbar, } from 'react-bootstrap';
 import { FaUserCircle } from 'react-icons/fa';
-
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../provider/AuthProvider';
 const NavigationBar = () => {
+    const { user } = useContext(AuthContext);
     return (
         <div>
             <Container>
@@ -14,14 +16,12 @@ const NavigationBar = () => {
                         <Navbar.Brand href="#home"></Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
-                            <Nav className="me-auto">
-                                <Nav.Link href="#features">
-                                    <Link to="/" >Home</Link>
-                                </Nav.Link>
-                                <Nav.Link href="#pricing">
-                                    <Link to="/about">About</Link>
-                                </Nav.Link>
-                                <Nav.Link href="#pricing">Career</Nav.Link>
+                            <Nav className="me-auto ">
+                               
+                                    <Link to="/category/0" className='mx-2 text-decoration-none' >Home</Link>
+                                    <Link to="/" className='mx-2 text-decoration-none' >About</Link>
+                                    <Link to='/' className='mx-2 text-decoration-none' >Career</Link>
+                                
 
                             </Nav>
                             <Nav>
@@ -30,11 +30,13 @@ const NavigationBar = () => {
                                     <Nav.Link href="#deets"> <FaUserCircle style={{ fontSize: "2rem" }} ></FaUserCircle >
                                     </Nav.Link>
                                 }
-                                <Nav.Link eventKey={2} href="#memes">
 
-                                    <Link to='/login'><button className='btn  btn-dark'>Login</button></Link>
+                                {
+                                    user ?
+                                        <Link to='/logout'><button className='btn  btn-dark'>Logout</button></Link> :
+                                        <Link to='/login'><button className='btn  btn-dark'>Login</button></Link>
 
-                                </Nav.Link>
+                                }
                             </Nav>
                         </Navbar.Collapse>
                     </Container>

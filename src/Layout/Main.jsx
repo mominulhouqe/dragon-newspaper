@@ -6,12 +6,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import LeftNav from '../pages/Shared/leftNav/leftNav';
 import RightNav from '../pages/Shared/rightNav/RightNav';
+import NavigationBar from '../pages/Shared/NavigationBar/NavigationBar';
 
 
 const Main = () => {
     return (
         <div>
             <Header />
+            <NavigationBar></NavigationBar>
             <Container>
 
                 <Row>

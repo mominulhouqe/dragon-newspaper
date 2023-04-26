@@ -4,15 +4,10 @@ import moment from 'moment';
 import { Button } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import Marquee from "react-fast-marquee";
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../provider/AuthProvider';
-import { FaUserCircle } from 'react-icons/fa';
+
 
 
 const Header = () => {
-    const {user} = useContext(AuthContext);
 
 
     return (
@@ -30,7 +25,7 @@ const Header = () => {
                 </Marquee>
             </div>
             {/* markqueee section end here */}
-
+            
 
 
         </Container>

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Logout = () => {
+const Register = () => {
     return (
         <div>
-            This is Logout
+            This is Regsiter
         </div>
     );
 };
 
-export default Logout;
+export default Register;

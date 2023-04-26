@@ -23,7 +23,7 @@ const NewsLayout = () => {
                     </Col>
                 </Row>
             </Container>
-            <Outlet></Outlet>
+            
 
         </div>
     );
