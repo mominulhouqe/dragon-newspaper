@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 
 const Login = () => {
@@ -10,29 +10,38 @@ const Login = () => {
     const [error, setError] = useState();
     const [success, setSucces] = useState();
 
-    const {signIn} = useContext(AuthContext);
-    
+    const { signIn } = useContext(AuthContext);
+const navigate = useNavigate();
 
-    const handleLogin = (event)=>{
+    const handleLogin = (event) => {
         event.preventDefault()
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+
+        if( !/(?=.*[a-z])/.test(password)){
+            setError('at least one lowercase')
+             return;
+          }
+ 
         setError('');
         setSucces('');
 
-        signIn(email,password)
-        .then(result =>{
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            if(loggedUser){
-                setSucces('Login succesfully done !!')
-            }
-           form.reset('');
-        })
-        .catch(error =>{
-            setError(error.message);
-        })
+        signIn(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                navigate('/category/0')
+             
+
+                if (loggedUser) {
+                    setSucces('Login succesfully done !!')
+                }
+                form.reset('');
+            })
+            .catch(error => {
+                setError(error.message);
+            })
     }
 
 
@@ -54,6 +63,7 @@ const Login = () => {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Remember me" />
                 </Form.Group>
+                <p>Are you <Link to='/reset' >Forget </Link> ?</p>
 
 
                 <Button variant="primary" type="submit">

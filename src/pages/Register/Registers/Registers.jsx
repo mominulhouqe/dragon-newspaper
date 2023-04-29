@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
+import { sendEmailVerification } from 'firebase/auth';
 
 const Register = () => {
     const {createUser} = useContext(AuthContext);
@@ -17,21 +18,33 @@ const Register = () => {
         const password = form.password.value;
         setError('');
         setSucces('')
+        if( !/(?=.*[a-z])/.test(password)){
+           setError('at least one lowercase')
+            return;
+         }
 
         createUser(email,password)
         .then(result =>{
             const createdUser = result.user;
 
-            form.reset('');
             if(createdUser){
                 setSucces("Register Successfully done !!")
             }
+            // handleEmailVerification(user)
+            form.reset('');
+          
         })
         .catch(error =>{
             setError(error.message)
         })
     }
-
+    
+// const handleEmailVerification =(user)=>{
+//     sendEmailVerification(user)
+//     .then(result =>{
+//         alert('Check your email')
+//     })
+  
 
     return (
         <div>
