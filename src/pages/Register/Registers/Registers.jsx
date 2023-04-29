@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 
 const Register = () => {
     const {createUser} = useContext(AuthContext);
+    const [error , setError] = useState();
+    const [success, setSucces] = useState();
 
     const handleRegister =(event)=>{
         event.preventDefault();
@@ -13,16 +15,20 @@ const Register = () => {
         const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name,photo,email,password);
-
+        setError('');
+        setSucces('')
 
         createUser(email,password)
         .then(result =>{
             const createdUser = result.user;
-            console.log(createdUser);
+
+            form.reset('');
+            if(createdUser){
+                setSucces("Register Successfully done !!")
+            }
         })
         .catch(error =>{
-            console.log(error);
+            setError(error.message)
         })
     }
 
@@ -66,12 +72,12 @@ const Register = () => {
                 </Form>
                 <Form.Text className='text-secondary'>
                     Already Have an Account? Please <Link to='/login'>Login</Link> here !!!
-                </Form.Text>
-                <Form.Text className='text-success'>
-
-                </Form.Text>
-                <Form.Text className='text-success'>
-
+                </Form.Text> <br />
+                <Form.Text className='text-danger fw-bold'>
+                    {error}
+                </Form.Text> <br />
+                <Form.Text className='text-success fw-bold'>
+                    {success}
                 </Form.Text>
 
 
