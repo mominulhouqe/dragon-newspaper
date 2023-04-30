@@ -8,6 +8,7 @@ const Register = () => {
     const {createUser} = useContext(AuthContext);
     const [error , setError] = useState();
     const [success, setSucces] = useState();
+    const [accept , setAccept] = useState(false)
 
     const handleRegister =(event)=>{
         event.preventDefault();
@@ -38,13 +39,10 @@ const Register = () => {
             setError(error.message)
         })
     }
-    
-// const handleEmailVerification =(user)=>{
-//     sendEmailVerification(user)
-//     .then(result =>{
-//         alert('Check your email')
-//     })
-  
+    const handleAccept = event =>{
+        setAccept(event.target.checked)
+    }
+
 
     return (
         <div>
@@ -74,12 +72,20 @@ const Register = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" name='password' placeholder="Password" />
                     </Form.Group>
+
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Accept TErm & Condition" />
+
+                        <Form.Check onClick={handleAccept} type="checkbox" name='accept'
+                         label={
+                            <>Accept <Link to='/terms'> Term & Condition</Link> </>
+                         }
+                         
+                         />
+
                     </Form.Group>
 
 
-                    <Button variant="primary" type="submit">
+                    <Button disabled={!accept} variant="primary" type="submit">
                         Submit
                     </Button>
                 </Form>

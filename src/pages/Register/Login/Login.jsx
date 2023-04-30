@@ -2,16 +2,18 @@ import React, { useContext, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 
 const Login = () => {
 
     const [error, setError] = useState();
     const [success, setSucces] = useState();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || 'category/0'
 
     const { signIn } = useContext(AuthContext);
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleLogin = (event) => {
         event.preventDefault()
@@ -19,11 +21,11 @@ const navigate = useNavigate();
         const email = form.email.value;
         const password = form.password.value;
 
-        if( !/(?=.*[a-z])/.test(password)){
+        if (!/(?=.*[a-z])/.test(password)) {
             setError('at least one lowercase')
-             return;
-          }
- 
+            return;
+        }
+
         setError('');
         setSucces('');
 
@@ -31,8 +33,8 @@ const navigate = useNavigate();
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                navigate('/category/0')
-             
+                navigate(from, {replace: true})
+
 
                 if (loggedUser) {
                     setSucces('Login succesfully done !!')
