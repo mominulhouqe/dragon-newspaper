@@ -44,12 +44,12 @@ const router = createBrowserRouter([
       // {
       //   path: '/',
       //   element: <Catagory />,
-      //   loader: ()=> fetch(`http://localhost:5000/news/`)
+      //   loader: ()=> fetch(`https://the-news-dragon-server-eight-kohl.vercel.app/news/`)
       // },
       {
         path: ':id',
         element: <Catagory></Catagory>,
-        loader: ({ params }) => fetch(`http://localhost:5000/catagrories/${params.id}`)
+        loader: ({ params }) => fetch(`https://the-news-dragon-server-eight-kohl.vercel.app/catagrories/${params.id}`)
       },
     ]
   },
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
       {
         path: ':id',
         element: <PrivateRoute> <News /></PrivateRoute> ,
-        loader: ({ params }) => fetch(`http://localhost:5000/news/${params.id}`)
+        loader: ({ params }) => fetch(`https://the-news-dragon-server-eight-kohl.vercel.app/news/${params.id}`)
       }
     ]
   }
